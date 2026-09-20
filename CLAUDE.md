@@ -1,523 +1,521 @@
-# CLAUDE.md — Plantilla de proyecto de análisis funcional
+# CLAUDE.md — Functional analysis project template (English variant)
 
-> Copia este archivo como `CLAUDE.md` en la raíz de cada nuevo proyecto de análisis funcional.
-> Actualiza la sección de estructura con el nombre real del proyecto.
-> **Versión de la plantilla: 2.0** — ver `CHANGELOG.md` en este repo (`sdd-template`) para el historial de cambios. Si mejoras esta plantilla en un proyecto concreto, retropropaga el cambio aquí y añade la entrada al changelog.
-
----
-
-## Checklist de inicio de proyecto
-
-Antes de escribir el primer documento:
-
-- [ ] Repositorio creado con `.gitignore` configurado (excluye `.env`, `.env.local`, `*.pem`, `*.key`)
-- [ ] `README.md` creado con texto provisional (se completará como README de portfolio al cerrar el proyecto)
-- [ ] `decisions.md` creado con la plantilla de entrada vacía
-- [ ] **Perfil de proyecto elegido y registrado en `decisions.md`** (ver sección "Perfiles de proyecto" más abajo)
-- [ ] `docs/00_glosario.md` creado (puede estar vacío)
-- [ ] `docs/01_brief_proyecto.md` creado con la estructura mínima
-- [ ] `.env.example` creado si el proyecto tiene variables de entorno (valores de ejemplo, nunca reales)
-- [ ] `LICENSE` creado (MIT para código; CC BY 4.0 si el entregable principal es documentación)
-- [ ] Repositorio configurado en GitHub: descripción de una línea, topics relevantes (ej.: `analisis-funcional`, `portfolio`, `sdd`)
-- [ ] Primer commit con solo la estructura vacía — antes de escribir contenido
+> Copy this file as `CLAUDE.md` into the root of a new functional analysis project targeting an English-speaking/international audience.
+> Update the structure section with the real project name.
+> **Template version: 2.0** — see `CHANGELOG.md` in this repo (`sdd-template`) for the change history. This is a straight translation of the Spanish master (`CLAUDE.md`) in this same repo; the methodology is identical. If you improve this template on a concrete project, port the change back to both language variants and add the changelog entry.
 
 ---
 
-## Perfiles de proyecto
+## Project kickoff checklist
 
-No todo proyecto de portfolio necesita las diez fases completas. Antes de escribir el Project Brief, elegir un perfil y registrarlo en `decisions.md` como primera decisión del proyecto ("Perfil elegido: [Completo/Ligero] — razón").
+Before writing the first document:
 
-### Perfil Completo
-
-Para el proyecto central del portfolio: dominio de negocio real, múltiples roles/actores, al menos un flujo con reglas de negocio no triviales. Sigue las diez fases documentadas en este archivo sin recortes.
-
-### Perfil Ligero
-
-Para herramientas de apoyo, utilidades internas o exploración de una técnica concreta: alcance acotado a uno o dos roles, sin reglas de negocio complejas. Cambios respecto al perfil Completo:
-
-- **00 Glosario, 01 Brief:** sin recortes — son los documentos que anclan todo lo demás.
-- **02 User Stories:** la valoración INVEST (equivalente a 02b) se hace inline al final del mismo documento, no en archivo separado.
-- **03 + 04 + 05 fusionados** en un único `03_requisitos.md`: reglas de negocio, requisitos funcionales en EARS, requisitos no funcionales, y una tabla de requisitos con columna MoSCoW y método de verificación (RTM y resumen MoSCoW combinados). Se conservan las señales de alarma del MoSCoW (no >80% Must, al menos un Won't justificado).
-- **06 Modelo de datos:** se omite como archivo si el dominio tiene una sola entidad simple; si hay ≥2 entidades con relaciones o una entidad con ciclo de vida propio, se documenta igual que en el perfil Completo.
-- **07 Mapa de flujos:** se omite como archivo si todos los flujos son lineales (sin puntos de decisión con ramas divergentes); en ese caso los pasos se documentan como criterios de aceptación de las user stories. Si algún flujo tiene ramas, se documenta igual que en el perfil Completo.
-- **08 Especificación de interfaz:** se omite si el proyecto no tiene UI o tiene una sola vista trivial (ej. un CLI de una acción).
-- **09 Plan de verificación:** sin recortes de disciplina, pero puede ser una tabla más corta si hay pocos requisitos Must.
-
-Regla general: fusionar u omitir un documento es una decisión, no una omisión silenciosa — se declara en `decisions.md` antes de escribir el Brief. Si a mitad de proyecto se descubre que el alcance creció más allá de lo previsto para un perfil Ligero, se registra el cambio de perfil como nueva decisión y se retoman las fases separadas desde ese punto.
+- [ ] Repository created with `.gitignore` configured (excludes `.env`, `.env.local`, `*.pem`, `*.key`)
+- [ ] `README.md` created with placeholder text (will be completed as the portfolio README when the project closes)
+- [ ] `decisions.md` created with the empty entry template
+- [ ] **Project profile chosen and logged in `decisions.md`** (see "Project profiles" below)
+- [ ] `docs/00_glossary.md` created (can start empty)
+- [ ] `docs/01_project_brief.md` created with the minimal structure
+- [ ] `.env.example` created if the project has environment variables (example values, never real ones)
+- [ ] `LICENSE` created (MIT for code; CC BY 4.0 if the main deliverable is documentation)
+- [ ] Repository configured on GitHub: one-line description, relevant topics (e.g. `business-analysis`, `portfolio`, `spec-driven-development`)
+- [ ] First commit with only the empty structure — before writing content
 
 ---
 
-## Metodología
+## Project profiles
 
-Este proyecto sigue **Spec Driven Development**. No se avanza a una fase sin haber completado, revisado y marcado como baseline los artefactos de la fase anterior.
+Not every portfolio project needs all ten phases. Before writing the Project Brief, choose a profile and log it in `decisions.md` as the project's first decision ("Profile chosen: [Full/Light] — reason").
 
-### Ciclo de vida de cada documento
+### Full profile
+
+For the portfolio's centerpiece project: a real business domain, multiple roles/actors, at least one flow with non-trivial business rules. Follows the ten phases documented in this file without cuts.
+
+### Light profile
+
+For support tools, internal utilities, or exploring a specific technique: scope limited to one or two roles, without complex business rules. Changes relative to the Full profile:
+
+- **00 Glossary, 01 Brief:** no cuts — these are the documents everything else anchors to.
+- **02 User Stories:** the INVEST review (equivalent to 02b) is done inline at the end of the same document, not in a separate file.
+- **03 + 04 + 05 merged** into a single `03_requirements.md`: business rules, functional requirements in EARS, non-functional requirements, and a requirements table with a MoSCoW column and verification method (RTM and MoSCoW summary combined). The MoSCoW warning signals are kept (no >80% Must, at least one justified Won't).
+- **06 Data model:** skipped as a file if the domain has a single simple entity; if there are ≥2 related entities or one entity with its own lifecycle, document it the same as in the Full profile.
+- **07 Flow map:** skipped as a file if all flows are linear (no decision points with diverging branches); in that case steps are documented as acceptance criteria of the user stories. If any flow branches, document it the same as in the Full profile.
+- **08 Interface specification:** skipped if the project has no UI or a single trivial view (e.g. a single-action CLI).
+- **09 Verification plan:** no cuts to discipline, but it can be a shorter table if there are few Must requirements.
+
+General rule: merging or skipping a document is a decision, not a silent omission — log it in `decisions.md` before writing the Brief. If mid-project the scope turns out to be larger than expected for a Light profile, log the profile change as a new decision and resume the separate phases from that point.
+
+---
+
+## Methodology
+
+This project follows **Spec Driven Development**. No phase advances until the previous phase's artifacts are completed, reviewed, and marked as baseline.
+
+### Lifecycle of each document
 
 ```
-borrador → revisión → baseline
+draft → review → baseline
 ```
 
-- **borrador:** primera redacción completa.
-- **revisión:** relectura con ojos de stakeholder — identificar inconsistencias, vacíos y ambigüedades antes de avanzar.
-- **baseline:** aprobado por el usuario. El campo `Estado:` de la cabecera cambia a `baseline [fecha]`. Solo desde baseline se avanza a la siguiente fase.
+- **draft:** first complete write-up.
+- **review:** re-read with stakeholder eyes — identify inconsistencies, gaps, and ambiguities before advancing.
+- **baseline:** approved by the user. The header's `Status:` field changes to `baseline [date]`. Only from baseline does the project move to the next phase.
 
-El campo `Estado:` en la cabecera de cada documento refleja en cuál de los tres estados se encuentra. Ejemplo: `Estado: baseline 2026-07-01`.
+The `Status:` field in each document's header reflects which of the three states it is in. Example: `Status: baseline 2026-07-01`.
 
-### Secuencia de fases (perfil Completo; ver variantes del perfil Ligero arriba)
+### Phase sequence (Full profile; see Light profile variants above)
 
 ```
-Project Brief          ←── incluye diagrama de contexto y consideración de privacidad
+Project Brief          ←── includes context diagram and privacy consideration
      │
-     ├── Glosario      ←── documento vivo; empieza aquí y crece con cada fase
+     ├── Glossary      ←── living document; starts here and grows with each phase
      ↓
 User Stories
-     └──→ Revisión INVEST (02b)  ←── cierra la fase; ninguna historia avanza sin superarla
+     └──→ INVEST review (02b)  ←── closes the phase; no story advances without passing it
      ↓
-BRD / PRD              ←── sin sección de flujos; puede incluir visión general en prosa
+BRD / PRD               ←── no flows section; may include a prose overview
      ↓
-Matriz de requisitos   ←── RTM real; incluye columna MoSCoW y método de verificación para RF y RNF
+Requirements Traceability Matrix  ←── a real RTM; includes MoSCoW column and verification method for FR and NFR
      ↓
-Resumen MoSCoW         ←── 1 página; cierra el loop: limpia downstream de Won't/Could
+MoSCoW summary          ←── 1 page; closes the loop: cleans Won't/Could out of downstream artifacts
      ↓
-Modelo de datos        ←── solo entidades de Must + Should
+Data model              ←── Must + Should entities only
      ↓
-Mapa de flujos         ←── fuente única de autoridad sobre flujos
+Flow map                ←── single source of authority on flows
      ↓
-Especificación de interfaz
+Interface specification
      ↓
-Plan de verificación   ←── cierra el ciclo entre requisitos y pruebas
+Verification plan       ←── closes the loop between requirements and tests
      ↓
-── Consistencia entre documentos ──   ←── verificación cruzada antes de escribir código
+── Cross-document consistency ──   ←── cross-check before writing code
      ↓
-Código
+Code
      ↓
-Revisión spec-vs-implementación  ←── compila gaps del desarrollo + detecta gaps nuevos
+Spec-vs-implementation review  ←── compiles gaps from development + detects new gaps
      ↓
-README de portfolio    ←── orienta al evaluador externo; último paso
+Portfolio README        ←── orients the external evaluator; last step
 ```
 
-### Consistencia entre documentos
+### Cross-document consistency
 
-Antes de escribir código, verificar las tres trazas:
+Before writing code, verify these three traces:
 
-1. ¿Cada término de dominio introducido en cualquier documento aparece en el glosario?
-2. ¿Cada RF de la RTM está cubierto por al menos una vista en la especificación de interfaz?
-3. ¿Cada flujo del mapa de flujos es trazable a al menos un RF en la RTM?
+1. Does every domain term introduced in any document appear in the glossary?
+2. Is every FR in the RTM covered by at least one view in the interface specification?
+3. Is every flow in the flow map traceable to at least one FR in the RTM?
 
-Si alguna traza falla, corregir los documentos afectados antes de continuar.
+If any trace fails, fix the affected documents before continuing.
 
-### Gap durante implementación
+### Gap during implementation
 
-Cuando durante el código se detecta que un requisito es incorrecto, imposible o diferente a lo especificado:
+When, during coding, a requirement turns out to be wrong, impossible, or different from what was specified:
 
-1. **Clasificar el gap:**
-   - (a) Implementar diferente — la spec era incorrecta; se corrige y se implementa la versión correcta.
-   - (b) Diferir — fuera del alcance de esta versión; se mueve a Should o se anota como deuda.
-   - (c) Cancelar — el requisito no tiene valor suficiente para implementarse.
-2. **Actualizar el documento de spec afectado** — antes de implementar el cambio.
-3. **Registrar en `decisions.md`** con título "Gap detectado: [descripción]", la clasificación y la razón.
-4. **Actualizar la RTM** si el cambio afecta al caso de prueba o al método de verificación.
-5. Continuar la implementación.
+1. **Classify the gap:**
+   - (a) Implement differently — the spec was wrong; correct it and implement the right version.
+   - (b) Defer — out of scope for this version; move it to Should or log it as debt.
+   - (c) Cancel — the requirement doesn't have enough value to implement.
+2. **Update the affected spec document** — before implementing the change.
+3. **Log it in `decisions.md`** with a title starting "Gap detected: [description]", the classification, and the reason.
+4. **Update the RTM** if the change affects the test case or verification method.
+5. Continue implementation.
 
-No implementar un cambio sin haber actualizado la spec primero. El código debe seguir a los documentos, no al revés.
+Never implement a change without having updated the spec first. Code follows the documents, not the other way around.
 
-La revisión spec-vs-implementación al cierre compila todos los gaps ya registrados en `decisions.md` durante el desarrollo, más cualquier gap que no se detectó hasta ese momento.
+The closing spec-vs-implementation review compiles all the gaps already logged in `decisions.md` during development, plus any gap not detected until that point.
 
 ---
 
-## Estándares por documento
+## Standards by document
 
 ---
 
-### 00 — Glosario
+### 00 — Glossary
 
-Documento vivo. Se abre con el Project Brief y se actualiza en cada fase.
+Living document. Opens with the Project Brief and is updated at every phase.
 
-**Formato de entrada estándar:**
+**Standard entry format:**
 
 ```
-**[Término]** — [Definición completa en una o dos frases].
-Relacionado con: [término1], [término2].
-Introducido en: [nombre del documento donde aparece por primera vez].
-Actualizado: [fecha si la definición evolucionó respecto a la versión anterior].
+**[Term]** — [Full definition in one or two sentences].
+Related to: [term1], [term2].
+Introduced in: [name of the document where it first appears].
+Updated: [date if the definition evolved from a previous version].
 ```
 
-**Qué debe contener:**
-- Todos los términos de dominio específicos del proyecto: estados, roles, conceptos de proceso, nombres de entidades.
-- Cualquier término que un lector externo podría malinterpretar.
+**What it must contain:**
+- Every project-specific domain term: states, roles, process concepts, entity names.
+- Any term an external reader could misunderstand.
 
-**Reglas:**
-- Ningún término de dominio nuevo se introduce en un documento sin añadirlo al glosario en la misma sesión.
-- Antes de baselinar cualquier documento, Claude verifica que todos los términos de dominio que introduce están en el glosario.
-- Si la definición de un término evoluciona, actualizar la entrada y añadir la fecha de actualización. No sobreescribir sin rastro.
+**Rules:**
+- No new domain term is introduced in a document without adding it to the glossary in the same session.
+- Before baselining any document, Claude verifies that every domain term it introduces is in the glossary.
+- If a term's definition evolves, update the entry and add the update date. Never overwrite silently.
 
 ---
 
 ### 01 — Project Brief
 
-**Estructura mínima:**
+**Minimal structure:**
 
-1. **Problema** — qué ocurre hoy y por qué es un problema. Incluir al menos un dato o estimación que cuantifique el impacto ("el proceso consume X minutos", "ocurre con frecuencia Y"). Si no hay dato disponible, documentarlo como supuesto.
-2. **Solución propuesta** — una línea.
-3. **Diagrama de contexto** — diagrama simple (puede ser texto) que muestra: el sistema, sus usuarios y sus dependencias externas (servicios de email, bases de datos, sistemas de terceros). Contextualiza el sistema para cualquier lector que llegue nuevo.
-4. **Stakeholders** — todos los afectados, no solo los usuarios directos. *(Los stakeholders incluyen a los usuarios directos; la tabla de Usuarios desglosa solo quienes interactúan con el sistema.)* Técnica: por cada objetivo del proyecto, preguntar "¿quién se beneficia?" y "¿quién se ve afectado negativamente?". Documentar en una tabla: stakeholder / relación con el proyecto / interés principal.
-5. **Usuarios** — tabla: rol / objetivo principal. Solo los que interactúan directamente con el sistema.
-6. **Objetivos del proyecto** — medibles.
-7. **Alcance** — dentro / fuera, explícito. Si hay ambigüedad, resolverla aquí o registrarla como decisión pendiente.
-8. **Restricciones y supuestos** — revisar que cubren las categorías relevantes: tiempo, presupuesto, técnica, organizativa, regulatoria (para restricciones); usuarios, datos, infraestructura, proceso (para supuestos). Si alguna categoría está vacía, justificar por qué no aplica.
-9. **Consideración de privacidad** — si el sistema maneja datos personales (nombres, emails, identificadores): ¿qué datos se almacenan? ¿durante cuánto tiempo? ¿quién tiene acceso? ¿qué ocurre con ellos al finalizar o resetear el sistema?
-10. **Criterios de éxito** — deben ser SMART: específicos, medibles y con plazo. "Los usuarios podrán usar la aplicación" no es un criterio de éxito válido. **Estos criterios se retoman literalmente al cierre del proyecto (ver "README de portfolio") para confrontarlos contra el resultado real — no se archivan una vez escritos.**
-11. **Horizonte temporal** — aunque sea aproximado.
-12. **Decisiones pendientes** — lista viva. Toda decisión pendiente debe resolverse antes de que el documento al que afecta llegue a baseline.
+1. **Problem** — what happens today and why it's a problem. Include at least one data point or estimate that quantifies the impact ("the process takes X minutes", "it happens with frequency Y"). If no data is available, document it as an assumption.
+2. **Proposed solution** — one line.
+3. **Context diagram** — a simple diagram (can be text) showing: the system, its users, and its external dependencies (email services, databases, third-party systems). Contextualizes the system for any new reader.
+4. **Stakeholders** — everyone affected, not just direct users. *(Stakeholders include direct users; the Users table only breaks out those who interact with the system.)* Technique: for each project goal, ask "who benefits?" and "who is negatively affected?". Document in a table: stakeholder / relationship to the project / main interest.
+5. **Users** — table: role / main goal. Only those who interact directly with the system.
+6. **Project goals** — measurable.
+7. **Scope** — in / out, explicit. If there's ambiguity, resolve it here or log it as a pending decision.
+8. **Constraints and assumptions** — check they cover the relevant categories: time, budget, technical, organizational, regulatory (for constraints); users, data, infrastructure, process (for assumptions). If any category is empty, justify why it doesn't apply.
+9. **Privacy consideration** — if the system handles personal data (names, emails, identifiers): what data is stored? for how long? who has access? what happens to it when the system closes or resets?
+10. **Success criteria** — must be SMART: specific, measurable, and time-bound. "Users will be able to use the app" is not a valid success criterion. **These criteria are revisited literally at project close (see "Portfolio README") to confront them with the actual outcome — they are not filed away once written.**
+11. **Time horizon** — even if approximate.
+12. **Pending decisions** — living list. Every pending decision must be resolved before the document it affects reaches baseline.
 
 ---
 
 ### 02 — User Stories
 
-**Formato:** Como [rol], quiero [acción], para [objetivo].
-**Criterios de aceptación:** Dado / Cuando / Entonces.
+**Format:** As a [role], I want [action], so that [goal].
+**Acceptance criteria:** Given / When / Then.
 
-**Organización:** agrupar por dominio funcional (acceso, gestión de usuarios, proceso principal, administración). No por orden de implementación.
+**Organization:** group by functional domain (access, user management, main process, administration). Not by implementation order.
 
-**Definition of Done** (definir al inicio del documento y no cambiarla):
-- Formato correcto (Como / quiero / para).
-- Al menos un criterio de aceptación del camino principal y uno del camino alternativo o de error.
-- Revisión INVEST (02b, o inline en perfil Ligero) superada sin ningún criterio en 🔴.
-- Todas las dependencias documentadas explícitamente.
+**Definition of Done** (define at the start of the document and don't change it):
+- Correct format (As a / I want / so that).
+- At least one acceptance criterion for the happy path and one for the alternative or error path.
+- INVEST review (02b, or inline in the Light profile) passed with no criterion in 🔴.
+- All dependencies explicitly documented.
 
-Una historia no se considera cerrada hasta que la revisión INVEST la haya superado.
+A story isn't considered closed until the INVEST review has passed it.
 
-**Estándares de calidad:**
-- IDs secuenciales y limpios. Si una historia se elimina durante la revisión, dejar una línea de nota: `~~US-08~~ — eliminada; contenido absorbido por US-07a`.
-- No fusionar dos historias para evitar una dependencia. La dependencia se documenta, no se oculta.
-- Historias de sistema ("Como sistema...") no son válidas: son comportamientos del sistema; van como criterios de aceptación de otra historia o como reglas de negocio en el BRD.
-- Restricciones no funcionales específicas de una historia (tiempo de respuesta, límite de tamaño) van en sus criterios de aceptación. Las restricciones de sistema van en el BRD.
+**Quality standards:**
+- Sequential, clean IDs. If a story is removed during review, leave a note line: `~~US-08~~ — removed; content absorbed into US-07a`.
+- Never merge two stories to avoid a dependency. The dependency is documented, not hidden.
+- "System stories" ("As the system...") are not valid: they are system behaviors; they go as acceptance criteria of another story or as business rules in the BRD.
+- Non-functional constraints specific to a story (response time, size limit) go in its acceptance criteria. System-wide constraints go in the BRD.
 
 ---
 
-### 02b — Valoración INVEST
+### 02b — INVEST review
 
-En perfil Ligero, esta valoración va al final del mismo documento de User Stories en vez de en un archivo separado; los criterios y umbrales son los mismos.
+In the Light profile, this review goes at the end of the same User Stories document instead of a separate file; the criteria and thresholds are the same.
 
-**Escala:** 🟢 cumple · 🟡 cumple con matices · 🔴 no cumple
+**Scale:** 🟢 meets · 🟡 meets with caveats · 🔴 doesn't meet
 
-**Umbrales:**
-- Cualquier criterio 🔴 bloquea el baseline. La historia requiere corrección antes de avanzar.
-- Tres o más criterios 🟡 en una historia indican un problema de diseño, aunque ninguno sea 🔴.
-- I🟡 por "no tiene valor sin otra historia" no es aceptable sin justificación explícita: o se fusiona con razón documentada o se separa y se documenta la dependencia.
-- Para los 🟡 que se aceptan: documentar el motivo y la mitigación. No aceptar un 🟡 en silencio.
+**Thresholds:**
+- Any 🔴 criterion blocks baseline. The story needs a fix before advancing.
+- Three or more 🟡 criteria in one story signal a design problem, even if none is 🔴.
+- I🟡 for "has no value without another story" is not acceptable without explicit justification: either merge with a documented reason, or split and document the dependency.
+- For accepted 🟡s: document the reason and mitigation. Never accept a 🟡 silently.
 
-**Señal de alarma:** si la revisión completa no produce ningún 🟡 ni 🔴, la revisión no ha sido suficientemente crítica. Releer cada historia con la pregunta: "¿qué podría salir mal al implementar esto?". Si tras la segunda lectura todos los criterios siguen en 🟢, Claude debe argumentar explícitamente por qué cada criterio está en verde antes de cerrar la revisión. Una revisión sin ningún 🟡 requiere justificación, no simplemente el resultado.
+**Warning sign:** if the full review produces no 🟡 or 🔴 at all, the review wasn't critical enough. Re-read every story asking "what could go wrong implementing this?". If, after the second read, every criterion is still 🟢, Claude must explicitly argue why each criterion is green before closing the review. A review with zero 🟡 requires justification, not just the result.
 
 ---
 
 ### 03 — BRD / PRD
 
-En perfil Ligero, este documento se fusiona con 04 y 05 en `03_requisitos.md` (ver "Perfiles de proyecto"); la estructura de contenido es la misma, añadiendo la tabla de requisitos con columna MoSCoW y método de verificación.
+In the Light profile, this document merges with 04 and 05 into `03_requirements.md` (see "Project profiles"); the content structure is the same, adding the requirements table with a MoSCoW column and verification method.
 
-**Estructura mínima:**
-1. Contexto y referencia
-2. Visión general del proceso *(opcional — dos párrafos en prosa; sin pasos enumerados; orienta al lector de negocio; no es la fuente de autoridad sobre flujos)*
-3. Actores y permisos (una matriz por dominio funcional, no una mega-matriz)
-4. Reglas de negocio (RN-xx)
-5. Requisitos funcionales en formato EARS (RF-xx)
-6. Requisitos no funcionales (RNF-xx)
-7. Casos límite y excepciones
+**Minimal structure:**
+1. Context and reference
+2. Process overview *(optional — two paragraphs of prose; no numbered steps; oriented to a business reader; not the source of authority on flows)*
+3. Actors and permissions (one matrix per functional domain, not one mega-matrix)
+4. Business rules (BR-xx)
+5. Functional requirements in EARS format (FR-xx)
+6. Non-functional requirements (NFR-xx)
+7. Edge cases and exceptions
 
-**Estándares de calidad:**
-- IDs de reglas de negocio y requisitos secuenciales. Si se elimina uno: `~~RN-05~~ *(eliminada — ver nota en RN-12)*`.
-- Las reglas de negocio que son el resultado de una decisión deben referenciar `decisions.md` con la fecha de la entrada correspondiente. Si la razón de una regla no es obvia, la referencia a `decisions.md` es obligatoria.
-- El BRD no tiene sección de flujos detallados. La "Visión general del proceso" es prosa contextual, nunca pasos numerados con decisiones.
-- Ninguna columna vacía con "—". Si una columna no aporta valor, se elimina del documento.
-- Antes de baselinar: verificar que todos los supuestos del Project Brief siguen siendo válidos. Si alguno cambió durante el análisis: actualizarlo en el Project Brief y registrar el cambio en `decisions.md`.
+**Quality standards:**
+- Sequential IDs for business rules and requirements. If one is removed: `~~BR-05~~ *(removed — see note in BR-12)*`.
+- Business rules that result from a decision must reference `decisions.md` with the date of the corresponding entry. If a rule's reason isn't obvious, the reference to `decisions.md` is mandatory.
+- The BRD has no detailed flows section. The "Process overview" is contextual prose, never numbered steps with decisions.
+- No empty column filled with "—". If a column adds no value, remove it from the document.
+- Before baselining: verify that all assumptions from the Project Brief still hold. If any changed during analysis: update the Project Brief and log the change in `decisions.md`.
 
-**Formato EARS** para requisitos funcionales:
+**EARS format** for functional requirements:
 
-| Patrón | Estructura |
+| Pattern | Structure |
 |--------|------------|
-| Ubiquo | *"El sistema debe..."* |
-| Dirigido por evento | *"Cuando X, el sistema debe..."* |
-| Dependiente de estado | *"Mientras X, el sistema debe..."* |
-| Opcional | *"Donde X, el sistema debe..."* |
-| No deseado | *"Si X, entonces el sistema debe..."* |
+| Ubiquitous | *"The system shall..."* |
+| Event-driven | *"When X, the system shall..."* |
+| State-driven | *"While X, the system shall..."* |
+| Optional | *"Where X, the system shall..."* |
+| Unwanted behavior | *"If X, then the system shall..."* |
 
 ---
 
-### 04 — Matriz de requisitos (RTM)
+### 04 — Requirements Traceability Matrix (RTM)
 
-En perfil Ligero, esta matriz vive dentro de `03_requisitos.md` (ver "Perfiles de proyecto").
+In the Light profile, this matrix lives inside `03_requirements.md` (see "Project profiles").
 
-Este documento es una **Matriz de Trazabilidad de Requisitos** real: permite seguir un requisito desde su origen (US) hasta su verificación (caso de prueba).
+This document is a real **Requirements Traceability Matrix**: it lets you follow a requirement from its origin (US) to its verification (test case).
 
-**Columnas obligatorias:**
+**Mandatory columns:**
 
-| ID | Descripción | Categoría | US de origen | RN relacionada | Prioridad MoSCoW | Método de verificación | Caso de prueba |
+| ID | Description | Category | Source US | Related BR | MoSCoW priority | Verification method | Test case |
 |----|-------------|-----------|--------------|----------------|------------------|------------------------|----------------|
 
-**Reglas:**
-- **Método de verificación:** obligatorio para todos los requisitos, tanto RF como RNF. Para RF: referencia al test o escenario ("E2E: test_grupo_crear"). Para RNF: herramienta y criterio cuantitativo ("axe DevTools — 0 violaciones nivel AA").
-- Los RF sin US de origen (comportamientos del sistema detectados durante el análisis) se marcan con "—" en esa columna. Al pie del documento, añadir una nota explicando que estos requisitos son derivados del análisis, no de una historia de usuario.
-- Si un requisito cambia durante la implementación, actualizar la fila completa; no dejar datos obsoletos.
+**Rules:**
+- **Verification method:** mandatory for every requirement, both FR and NFR. For FR: reference to the test or scenario ("E2E: test_create_group"). For NFR: tool and quantitative criterion ("axe DevTools — 0 level AA violations").
+- FRs with no source US (system behaviors detected during analysis) are marked "—" in that column. At the bottom of the document, add a note explaining these requirements are derived from analysis, not from a user story.
+- If a requirement changes during implementation, update the whole row; never leave stale data.
 
 ---
 
 ### 05 — MoSCoW
 
-En perfil Ligero, esta distribución vive como columna dentro de `03_requisitos.md` (ver "Perfiles de proyecto"); las señales de alarma siguen aplicando igual.
+In the Light profile, this distribution lives as a column inside `03_requirements.md` (see "Project profiles"); the warning signals still apply the same way.
 
-El MoSCoW **no es un documento que repite todos los requisitos**. Es un documento de una página con:
-1. Tabla de distribución (Must / Should / Could / Won't por categoría).
-2. Defensa de las decisiones de priorización más importantes: por qué X es Must y no Should, por qué Y es Won't.
-3. Lista de ítems Should/Could con su alternativa manual (qué haría el usuario si esta función no existiera).
-4. Lista de ítems Won't Have con nota de si podría reconsiderarse en una versión futura.
+The MoSCoW document **is not a document that repeats every requirement**. It's a one-page document with:
+1. Distribution table (Must / Should / Could / Won't by category).
+2. Defense of the most important prioritization decisions: why X is Must and not Should, why Y is Won't.
+3. List of Should/Could items with their manual workaround (what the user would do if this feature didn't exist).
+4. List of Won't Have items with a note on whether it could be reconsidered in a future version.
 
-La prioridad de cada requisito vive como **columna en la RTM (04)**. El documento MoSCoW referencia la RTM.
+Each requirement's priority lives as a **column in the RTM (04)**. The MoSCoW document references the RTM.
 
-**Señales de alarma:**
-- Si más del 80% de los requisitos son Must Have: el alcance no está ajustado al MVP. Partir del flujo mínimo que resuelve el problema; clasificar todo lo que esté fuera como Should/Could; argumentar de vuelta a Must solo lo que no tiene alternativa viable.
-- Si no hay ningún Won't Have: el analista no ha demostrado la capacidad de decir que no. Won't Have no es "lo que no dio tiempo" — es "lo que se evaluó y se descartó explícitamente para esta versión". Toda especificación profesional tiene al menos dos o tres.
+**Warning signs:**
+- If more than 80% of requirements are Must Have: the scope isn't tuned to an MVP. Start from the minimal flow that solves the problem; classify everything outside it as Should/Could; argue only what has no viable alternative back into Must.
+- If there is no Won't Have at all: the analyst hasn't demonstrated the ability to say no. Won't Have is not "what we didn't have time for" — it's "what was evaluated and explicitly ruled out for this version". Every professional spec has at least two or three.
 
-**Cierre del loop tras el MoSCoW:**
-- Antes de avanzar al modelo de datos y al mapa de flujos: verificar que ningún artefacto downstream incluye ítems Won't o Could.
-- El modelo de datos solo modela entidades y atributos de Must + Should.
-- El mapa de flujos no incluye flujos de ítems Won't o Could.
-
----
-
-### 06 — Modelo de datos conceptual
-
-En perfil Ligero, se omite como archivo si el dominio tiene una sola entidad simple (ver "Perfiles de proyecto").
-
-**Estándares de calidad:**
-- Solo se modelan entidades y atributos de requisitos Must + Should. Los ítems Won't/Could no aparecen en el modelo.
-- Excepción: entidades de infraestructura transversal (autenticación, configuración global) que son necesarias independientemente del nivel de prioridad de las features. Etiquetarlas como "infraestructura" en la tabla resumen.
-- Diagrama de transiciones de estado para cada entidad que tenga un ciclo de vida propio.
-- Tabla de relaciones con cardinalidad y nota sobre las restricciones de negocio relevantes.
-- Tabla resumen de entidades con prioridad MoSCoW.
-- Los atributos deben incluir sus restricciones de validación cuando no sean obvias (único, no nulo, rango, formato).
+**Closing the loop after MoSCoW:**
+- Before moving to the data model and flow map: verify no downstream artifact includes Won't or Could items.
+- The data model only models Must + Should entities and attributes.
+- The flow map doesn't include flows for Won't or Could items.
 
 ---
 
-### 07 — Mapa de flujos
+### 06 — Conceptual data model
 
-En perfil Ligero, se omite como archivo si todos los flujos son lineales (ver "Perfiles de proyecto"); en ese caso los pasos van como criterios de aceptación de las user stories.
+In the Light profile, this is skipped as a file if the domain has a single simple entity (see "Project profiles").
 
-Este documento es la **única fuente de autoridad sobre flujos**. Si el BRD tiene una sección de flujos, este documento la supera.
+**Quality standards:**
+- Only Must + Should requirement entities and attributes are modeled. Won't/Could items don't appear in the model.
+- Exception: cross-cutting infrastructure entities (authentication, global configuration) that are needed regardless of feature priority. Label them "infrastructure" in the summary table.
+- State transition diagram for every entity with its own lifecycle.
+- Relationship table with cardinality and a note on the relevant business constraints.
+- Entity summary table with MoSCoW priority.
+- Attributes must include their validation constraints when not obvious (unique, not null, range, format).
 
-**Estructura por flujo:**
+---
+
+### 07 — Flow map
+
+In the Light profile, this is skipped as a file if all flows are linear (see "Project profiles"); in that case steps are documented as acceptance criteria of the user stories.
+
+This document is the **single source of authority on flows**. If the BRD has a flows section, this document supersedes it.
+
+**Structure per flow:**
 
 ```
-## Flujo N — [Nombre]
+## Flow N — [Name]
 
-**Actores:** [lista]
-**Disparador:** [qué acción o evento inicia este flujo]
-**Precondición:** [estado del sistema antes de que empiece]
-**Postcondición:** [estado del sistema cuando termina con éxito]
+**Actors:** [list]
+**Trigger:** [what action or event starts this flow]
+**Precondition:** [system state before it starts]
+**Postcondition:** [system state when it succeeds]
 ```
 
-**Leyenda de anotaciones:**
-- `[D]` — punto de decisión con ramas → Sí / → No
-- `[E]` — camino de error o bloqueo: el flujo **no alcanza la postcondición** → termina en `FIN ✗`
-- `[A]` — flujo alternativo: alcanza la **misma postcondición** por un camino diferente → termina en `FIN ✓`
-- `[S]` — paso de funcionalidad Should
-- `FIN ✓` — postcondición alcanzada
-- `FIN ✗` — flujo terminado sin completarse
+**Annotation legend:**
+- `[D]` — decision point with branches → Yes / → No
+- `[E]` — error or blocking path: the flow **does not reach the postcondition** → ends at `END ✗`
+- `[A]` — alternative flow: reaches the **same postcondition** via a different path → ends at `END ✓`
+- `[S]` — a Should-feature step
+- `END ✓` — postcondition reached
+- `END ✗` — flow ended without completing
 
-La distinción entre [E] y [A] importa en el diseño de la interfaz: un [E] necesita un mensaje de error; un [A] necesita una ruta de navegación alternativa.
-
-**Reglas:**
-- Referencias a RF y RN en cada paso relevante.
-- Los ítems Could/Won't no aparecen en los flujos.
-- Cuando un flujo desencadena otro, referenciarlo explícitamente: `*(Ver Flujo N.)*`.
+**Rules:**
+- References to FR and BR at every relevant step.
+- Could/Won't items don't appear in flows.
+- When one flow triggers another, reference it explicitly: `*(See Flow N.)*`.
 
 ---
 
-### 08 — Especificación de interfaz
+### 08 — Interface specification
 
-En perfil Ligero, se omite si el proyecto no tiene UI o tiene una sola vista trivial (ver "Perfiles de proyecto").
+In the Light profile, this is skipped if the project has no UI or a single trivial view (see "Project profiles").
 
-**Estructura:**
-- Mapa de navegación al inicio.
-- Por cada vista: elementos (tabla), estados, acciones.
-- Cada vista referencia los RF que satisface.
+**Structure:**
+- Navigation map at the start.
+- Per view: elements (table), states, actions.
+- Each view references the FRs it satisfies.
 
-**Estados que deben cubrirse sistemáticamente en cada vista:**
+**States that must be covered systematically in every view:**
 
-| Estado | Descripción |
+| State | Description |
 |--------|-------------|
-| Estado vacío | Qué ve el usuario cuando la lista o sección no tiene datos |
-| Estado de carga | Indicador visual mientras se espera una respuesta asíncrona |
-| Estado de error | Qué ocurre cuando la operación falla |
-| Estado normal | Vista con datos |
+| Empty state | What the user sees when the list or section has no data |
+| Loading state | Visual indicator while an async response is pending |
+| Error state | What happens when the operation fails |
+| Normal state | View with data |
 
-**Si existe RNF de interfaz responsive:** para cada vista, indicar qué elementos se adaptan, colapsan o reorganizan en pantalla pequeña.
+**If there's an NFR for responsive interface:** for each view, indicate which elements adapt, collapse, or reorganize on small screens.
 
-**Acciones destructivas o irreversibles:** cualquier acción que no se puede deshacer (eliminar, resetear, confirmar) debe tener especificado el diálogo de confirmación: qué dice, qué opciones ofrece.
+**Destructive or irreversible actions:** any action that can't be undone (delete, reset, confirm) must have its confirmation dialog specified: what it says, what options it offers.
 
 ---
 
-### 09 — Plan de verificación
+### 09 — Verification plan
 
-El documento que cierra el ciclo entre requisitos y pruebas.
+The document that closes the loop between requirements and tests.
 
-**Estructura:**
+**Structure:**
 
-| ID requisito | Tipo RF/RNF | Descripción | Tipo de prueba | Herramienta / Entorno | Criterio de éxito | Resultado |
+| Requirement ID | FR/NFR type | Description | Test type | Tool / Environment | Success criterion | Result |
 |---|---|---|---|---|---|---|
 
-**Tipos de prueba:**
-- **Inspección** — revisión manual del código, documento o configuración.
-- **Demostración** — ejecutar el caso en el sistema y mostrar el resultado esperado.
-- **Prueba** — test automatizado (unitario, integración o E2E).
-- **Análisis** — evaluación con herramienta especializada (axe, Lighthouse, W3C Validator).
+**Test types:**
+- **Inspection** — manual review of code, document, or configuration.
+- **Demonstration** — run the case in the system and show the expected result.
+- **Test** — automated test (unit, integration, or E2E).
+- **Analysis** — evaluation with a specialized tool (axe, Lighthouse, W3C Validator).
 
-**Reglas:**
-- Cubre todos los Must Have (RF y RNF). Los Should Have aparecen con una nota de que son opcionales en esta versión.
-- Para RNF: criterio cuantitativo obligatorio. No "cumple WCAG" sino "0 violaciones nivel AA en axe DevTools en las vistas V-01 a V-10".
-- La columna "Resultado" se rellena durante la verificación, no antes. Un resultado en blanco es un requisito no verificado; documentar el motivo si se omite intencionalmente.
-
----
-
-## Revisión spec-vs-implementación
-
-Al cerrar el código, antes de dar el proyecto por terminado:
-
-1. Recopilar todos los gaps registrados en `decisions.md` como "Gap detectado" durante el desarrollo.
-2. Recorrer todos los Must Have de la RTM y verificar que cada uno está implementado y verificado.
-3. Para los gaps nuevos detectados en este paso: clasificar, documentar en `decisions.md` y actualizar el plan de verificación.
+**Rules:**
+- Covers every Must Have (FR and NFR). Should Haves appear with a note that they're optional in this version.
+- For NFR: a quantitative criterion is mandatory. Not "meets WCAG" but "0 level AA violations in axe DevTools across views V-01 to V-10".
+- The "Result" column is filled in during verification, not before. A blank result is an unverified requirement; document the reason if omitted intentionally.
 
 ---
 
-## README de portfolio
+## Spec-vs-implementation review
 
-Último paso del proyecto. Una página que orienta al evaluador externo:
+When closing out the code, before considering the project done:
 
-- Qué problema resuelve el proyecto y por qué vale la pena leer la documentación.
-- Lista de documentos en orden de lectura recomendado con una línea de descripción cada uno.
-- Dos o tres decisiones clave que demuestran el razonamiento analítico detrás del proyecto.
-- Estado del proyecto: qué se entregó, qué quedó diferido y por qué.
-- **Resultados frente a los criterios de éxito del Brief.** Tabla obligatoria que retoma literalmente cada criterio SMART definido en `01_brief_proyecto.md` y lo confronta con el resultado real:
+1. Collect all gaps logged in `decisions.md` as "Gap detected" during development.
+2. Walk through every Must Have in the RTM and verify each is implemented and verified.
+3. For new gaps detected in this step: classify, document in `decisions.md`, and update the verification plan.
 
-  | Criterio de éxito (Brief) | Resultado obtenido | ¿Cumplido? |
+---
+
+## Portfolio README
+
+Last step of the project. One page that orients the external evaluator:
+
+- What problem the project solves and why the documentation is worth reading.
+- List of documents in recommended reading order, with a one-line description each.
+- Two or three key decisions that demonstrate the analytical reasoning behind the project.
+- Project status: what was delivered, what was deferred, and why.
+- **Results against the Brief's success criteria.** Mandatory table that revisits every SMART criterion defined in `01_project_brief.md` literally and confronts it with the actual result:
+
+  | Success criterion (Brief) | Outcome | Met? |
   |---|---|---|
 
-  Si un criterio no se cumplió, explicar por qué y qué se necesitaría para cumplirlo — no se omite la fila ni se reformula el criterio a posteriori para que "encaje" con el resultado.
+  If a criterion wasn't met, explain why and what it would take to meet it — don't drop the row or reword the criterion after the fact to make it "fit" the result.
 
 ---
 
-## GitHub y portfolio público
+## GitHub and public portfolio
 
-### Commits como artefacto de portfolio
+### Commits as a portfolio artifact
 
-El historial de commits es visible en GitHub y debe contar la historia del proyecto: primero la documentación por fases, luego la implementación. Un evaluador que mira el historial debe poder ver que el proceso SDD se siguió de verdad.
+The commit history is visible on GitHub and must tell the project's story: documentation phase by phase first, then implementation. An evaluator looking at the history should be able to see that the SDD process was actually followed.
 
-**Convención de mensajes de commit:**
+**Commit message convention:**
 
 ```
-docs: [fase] — [descripción breve]     ←── commits de documentación
-feat: [descripción breve]              ←── funcionalidad nueva
-fix: [descripción breve]               ←── corrección de error
-test: [descripción breve]              ←── tests
-chore: [descripción breve]             ←── tareas de mantenimiento (deps, config)
+docs: [phase] — [brief description]     ←── documentation commits
+feat: [brief description]               ←── new functionality
+fix: [brief description]                ←── bug fix
+test: [brief description]               ←── tests
+chore: [brief description]              ←── maintenance tasks (deps, config)
 ```
 
-Ejemplos:
+Examples:
 - `docs: project brief — baseline`
-- `docs: user stories — revisión INVEST completada`
+- `docs: user stories — INVEST review completed`
 - `docs: brd/prd — baseline`
-- `feat: autenticación — login y primer acceso`
+- `feat: authentication — login and first access`
 
-**Reglas:**
-- Un commit por fase de documentación al llegar a baseline, no uno por cada edición.
-- Los mensajes describen el resultado ("baseline", "revisión completada"), no la acción ("edito", "añado", "cambio").
-- No mezclar commits de documentación con commits de código en el mismo push.
+**Rules:**
+- One commit per documentation phase when it reaches baseline, not one per edit.
+- Messages describe the outcome ("baseline", "review completed"), not the action ("edit", "add", "change").
+- Never mix documentation commits and code commits in the same push.
 
-### README.md como landing page de GitHub
+### README.md as the GitHub landing page
 
-El README.md es lo primero que ve cualquier persona que llega al repositorio — se renderiza directamente en la página principal de GitHub. Debe estar pensado para ese formato, no como un documento de texto plano.
+The README.md is the first thing anyone sees when they land on the repository — it renders directly on GitHub's main page. It must be designed for that format, not as a plain text document.
 
-**Estructura recomendada para el README final:**
+**Recommended structure for the final README:**
 
 ```markdown
-# [Nombre del proyecto]
+# [Project name]
 
-[Una línea que describe qué hace y para quién.]
+[One line describing what it does and for whom.]
 
-## El problema
+## The problem
 
-[2-3 frases: qué ocurría antes, por qué era un problema, qué lo resuelve.]
+[2-3 sentences: what happened before, why it was a problem, what solves it.]
 
-## Documentación
+## Documentation
 
-| Documento | Descripción |
+| Document | Description |
 |-----------|-------------|
-| [Project Brief](docs/01_brief_proyecto.md) | Problema, alcance y objetivos |
-| [User Stories](docs/02_historias_usuario.md) | Historias de usuario con criterios de aceptación |
+| [Project Brief](docs/01_project_brief.md) | Problem, scope and goals |
+| [User Stories](docs/02_user_stories.md) | User stories with acceptance criteria |
 | ... | ... |
 
-## Resultados frente a los criterios de éxito
+## Results against success criteria
 
-[Tabla — ver sección "README de portfolio" arriba.]
+[Table — see "Portfolio README" section above.]
 
-## Stack tecnológico *(si aplica)*
+## Tech stack *(if applicable)*
 
-[Lista de tecnologías principales.]
+[List of main technologies.]
 
-## Estado del proyecto
+## Project status
 
-[Qué está entregado, qué quedó diferido y por qué.]
+[What's delivered, what was deferred and why.]
 ```
 
-**Reglas:**
-- Si el proyecto tiene interfaz visual, incluir al menos una captura de pantalla (`![descripción](ruta/imagen.png)`).
-- Si el proyecto está desplegado, incluir el enlace.
-- Los enlaces a documentos deben usar rutas relativas para que funcionen tanto en GitHub como en local.
-- El README provisional (durante el desarrollo) puede ser solo el título y una línea. No dejarlo vacío: GitHub muestra el README vacío como señal de abandono.
+**Rules:**
+- If the project has a visual interface, include at least one screenshot (`![description](path/image.png)`).
+- If the project is deployed, include the link.
+- Links to documents must use relative paths so they work both on GitHub and locally.
+- The placeholder README (during development) can be just the title and one line. Never leave it empty: GitHub shows an empty README as a sign of abandonment.
 
-### Licencia
+### License
 
-Un repositorio público sin `LICENSE` es técnicamente "todos los derechos reservados", lo que impide que otros usen o referencien el trabajo legalmente.
+A public repository without a `LICENSE` is technically "all rights reserved", which legally prevents others from using or referencing the work.
 
-- Para proyectos donde el código es el entregable principal: **MIT**.
-- Para proyectos donde la documentación es el entregable principal: **CC BY 4.0** (Creative Commons Atribución).
-- Para proyectos mixtos: MIT para el código, CC BY 4.0 para la documentación — especificarlo en el propio LICENSE o en el README.
+- For projects where the code is the main deliverable: **MIT**.
+- For projects where documentation is the main deliverable: **CC BY 4.0** (Creative Commons Attribution).
+- For mixed projects: MIT for the code, CC BY 4.0 for the documentation — specify it in the LICENSE itself or in the README.
 
 ---
 
-## Log de decisiones (`decisions.md`)
+## Decision log (`decisions.md`)
 
-Captura **todas** las decisiones relevantes del proyecto, no solo las de análisis:
+Captures **every** relevant project decision, not just analysis ones:
 
-- El perfil de proyecto elegido (Completo/Ligero) y su razón — primera entrada del proyecto.
-- Decisiones de análisis: alcance, roles, reglas de negocio, mecanismos.
-- Decisiones de diseño con consecuencias funcionales: arquitectura de autenticación, modelo de sesión, integraciones, stack tecnológico.
-- Gaps detectados durante la implementación o en la revisión final. El título de estas entradas debe comenzar con **"Gap detectado:"** para identificarlos fácilmente en el log.
+- The project profile chosen (Full/Light) and its reason — the project's first entry.
+- Analysis decisions: scope, roles, business rules, mechanisms.
+- Design decisions with functional consequences: authentication architecture, session model, integrations, tech stack.
+- Gaps detected during implementation or in the final review. These entries' titles must start with **"Gap detected:"** so they're easy to spot in the log.
 
-Los gaps se documentan **cuando se detectan**, no solo al final del proyecto.
+Gaps are documented **when they're detected**, not only at the end of the project.
 
-**Formato de entrada:**
-
-```
-### [FECHA] — [TÍTULO BREVE]
-
-- **Estado:** activa
-- **Decisión:** qué se decidió
-- **Contexto:** por qué era necesario decidir esto
-- **Alternativas descartadas:** qué se consideró y por qué no se eligió
-- **Consecuencias:** qué implica hacia adelante
-```
-
-**Reversión de una decisión:** crear una entrada nueva que referencia la original y marcar la original como supersedida:
+**Entry format:**
 
 ```
-### [FECHA ORIGINAL] — [TÍTULO]
-- **Estado:** ~~activa~~ supersedida — ver [FECHA NUEVA]
+### [DATE] — [BRIEF TITLE]
+
+- **Status:** active
+- **Decision:** what was decided
+- **Context:** why this needed to be decided
+- **Alternatives discarded:** what was considered and why it wasn't chosen
+- **Consequences:** what this implies going forward
+```
+
+**Reverting a decision:** create a new entry that references the original and mark the original as superseded:
+
+```
+### [ORIGINAL DATE] — [TITLE]
+- **Status:** ~~active~~ superseded — see [NEW DATE]
 ...
 
-### [FECHA NUEVA] — Revisión de [TÍTULO ORIGINAL]
-- **Estado:** activa
-- **Decisión:** la decisión de [FECHA ORIGINAL] queda revertida. [Nueva decisión].
-- **Contexto:** [qué cambió para que la decisión anterior dejara de ser válida]
+### [NEW DATE] — Revision of [ORIGINAL TITLE]
+- **Status:** active
+- **Decision:** the decision from [ORIGINAL DATE] is reverted. [New decision].
+- **Context:** [what changed to make the previous decision no longer valid]
 ...
 ```
 
@@ -525,102 +523,102 @@ Los gaps se documentan **cuando se detectan**, no solo al final del proyecto.
 
 ## Backlog (`BACKLOG.md`)
 
-Captura toda idea, duda sin resolver, propuesta de funcionalidad o corrección futura que el usuario mencione en conversación y que no se vaya a abordar en el momento — no debe quedar solo en el historial de la conversación.
+Captures every idea, unresolved question, proposed feature, or future fix the user mentions in conversation that won't be addressed right away — it shouldn't just be left in the conversation history.
 
-- Se registra en el mismo turno en que se menciona, con el formato ya establecido en `BACKLOG.md` (Origen / Descripción / Relacionado con / Preguntas abiertas).
-- No hace falta que el usuario diga explícitamente "esto va al backlog": si algo se plantea como idea futura, duda que no se resuelve ahora, o posible corrección que se pospone, se anota igual.
-- Si la duda se resuelve en la misma conversación (aunque se haya mencionado como posible ítem de backlog), se documenta igualmente como resuelta — ver ejemplos ya existentes en `BACKLOG.md` — en vez de omitirse.
-- Un ítem de backlog nunca entra directamente en una fase formal (User Stories, BRD, RTM...) sin pasar antes por una decisión explícita del usuario, según indica la cabecera de `BACKLOG.md`.
+- Logged in the same turn it's mentioned, using the format already established in `BACKLOG.md` (Origin / Description / Related to / Open questions).
+- The user doesn't need to explicitly say "this goes to the backlog": if something is raised as a future idea, an unresolved question, or a possible fix that's postponed, log it anyway.
+- If the question is resolved in the same conversation (even if it was mentioned as a possible backlog item), document it as resolved too — see existing examples in `BACKLOG.md` — instead of omitting it.
+- A backlog item never enters a formal phase (User Stories, BRD, RTM...) without first passing through an explicit user decision, as `BACKLOG.md`'s header states.
 
 ---
 
-## Seguridad
+## Security
 
-### Credenciales y secretos
+### Credentials and secrets
 
-- Nunca incrustar credenciales, tokens ni secretos en URLs, código o archivos de configuración versionados.
-- Cualquier operación que implique autenticación o credenciales debe ejecutarla el usuario directamente en su terminal.
-- Antes de ejecutar cualquier comando con implicaciones de seguridad: explicar qué va a hacer y esperar confirmación explícita.
+- Never embed credentials, tokens, or secrets in URLs, code, or versioned configuration files.
+- Any operation involving authentication or credentials must be run by the user directly in their terminal.
+- Before running any command with security implications: explain what it will do and wait for explicit confirmation.
 
-### Variables de entorno
+### Environment variables
 
-- Todas las variables de entorno que el proyecto necesita están documentadas en `.env.example` con valores de ejemplo o descripciones (nunca valores reales).
-- `.env.example` sí se versiona. `.env`, `.env.local` y cualquier archivo con valores reales nunca se versionan.
+- Every environment variable the project needs is documented in `.env.example` with example values or descriptions (never real values).
+- `.env.example` is versioned. `.env`, `.env.local`, and any file with real values are never versioned.
 
-### Repositorio público
+### Public repository
 
-Si el repositorio es público (caso habitual en un portfolio), todo lo que se sube es visible permanentemente. Implicaciones adicionales:
+If the repository is public (the usual case for a portfolio), everything pushed is permanently visible. Additional implications:
 
-- Los datos de seed y de ejemplo deben ser **completamente ficticios**: nombres inventados, emails del tipo `alumno1@ejemplo.com`, sin datos reales de personas aunque sean de prueba.
-- Los documentos de análisis no deben contener datos reales de usuarios, instituciones o sistemas de terceros aunque estén anonimizados parcialmente.
-- Antes de cada push, revisar mentalmente si hay algo en los archivos nuevos o modificados que no debería ser público.
+- Seed and sample data must be **entirely fictitious**: made-up names, emails like `student1@example.com`, no real data from people even if it's test data.
+- Analysis documents must not contain real data about users, institutions, or third-party systems even if partially anonymized.
+- Before every push, mentally review whether anything in new or modified files shouldn't be public.
 
-### Antes del primer commit
+### Before the first commit
 
-Verificar que `.gitignore` excluye:
+Verify that `.gitignore` excludes:
 - `.env`, `.env.local`, `.env.*.local`
 - `*.pem`, `*.key`, `*.p12`
-- Directorios de credenciales o secretos del entorno de desarrollo
+- Development environment credential/secret directories
 
-Si el proyecto añade nuevas dependencias: revisar vulnerabilidades conocidas antes de hacer commit (`npm audit` o equivalente).
-
----
-
-## Normas de trabajo
-
-- El usuario piensa y decide. Claude orienta, propone opciones y advierte consecuencias, pero no decide.
-- Ante cualquier decisión que afecte al alcance, a los requisitos, a la arquitectura o a la experiencia de usuario: presentar opciones con pros/contras y esperar que el usuario elija.
-- Claude redacta propuestas completas; el usuario revisa, corrige y aprueba.
-- Antes de actualizar `decisions.md`, el usuario debe haber argumentado la decisión en la conversación.
-- Si el usuario quiere saltarse una fase: señalarlo y redirigir.
-- Si el usuario quiere marcar un documento como baseline sin haber pasado por revisión: señalarlo.
-- Si algo en la spec no tiene sentido o parece incorrecto: decirlo con argumentos antes de ejecutar.
+If the project adds new dependencies: check for known vulnerabilities before committing (`npm audit` or equivalent).
 
 ---
 
-## Revisión de User Stories
+## Working norms
 
-Flujo: redacción → valoración INVEST → corrección → baseline.
-
-Cuando el usuario presente las user stories, cargar `docs/02b_historias_usuario_invest.md` (o la sección inline equivalente en perfil Ligero) y rellenar la valoración antes de cualquier otro paso.
+- The user thinks and decides. Claude guides, proposes options, and warns of consequences, but does not decide.
+- For any decision affecting scope, requirements, architecture, or user experience: present options with pros/cons and wait for the user to choose.
+- Claude drafts complete proposals; the user reviews, corrects, and approves.
+- Before updating `decisions.md`, the user must have argued the decision in conversation.
+- If the user wants to skip a phase: flag it and redirect.
+- If the user wants to mark a document as baseline without having gone through review: flag it.
+- If something in the spec doesn't make sense or looks wrong: say so with arguments before executing.
 
 ---
 
-## Estructura de documentación (perfil Completo)
+## User Stories review
+
+Flow: drafting → INVEST review → correction → baseline.
+
+When the user presents the user stories, load `docs/02b_user_stories_invest.md` (or the inline equivalent section in the Light profile) and fill in the review before any other step.
+
+---
+
+## Documentation structure (Full profile)
 
 ```
-[nombre-proyecto]/
+[project-name]/
 ├── CLAUDE.md
-├── README.md               ←── texto provisional hasta el cierre; se completa como README de portfolio
+├── README.md               ←── placeholder text until closing; completed as the portfolio README
 ├── decisions.md
 └── docs/
-    ├── 00_glosario.md      ←── vivo desde el inicio
-    ├── 01_brief_proyecto.md ←── incluye diagrama de contexto
-    ├── 02_historias_usuario.md
-    ├── 02b_historias_usuario_invest.md
+    ├── 00_glossary.md      ←── living from the start
+    ├── 01_project_brief.md ←── includes context diagram
+    ├── 02_user_stories.md
+    ├── 02b_user_stories_invest.md
     ├── 03_brd_prd.md
-    ├── 04_matriz_requisitos.md
+    ├── 04_requirements_matrix.md
     ├── 05_moscow.md
-    ├── 06_modelo_datos.md
-    ├── 07_mapa_flujos.md
-    ├── 08_especificacion_interfaz.md
-    └── 09_plan_verificacion.md
+    ├── 06_data_model.md
+    ├── 07_flow_map.md
+    ├── 08_interface_spec.md
+    └── 09_verification_plan.md
 ```
 
-## Estructura de documentación (perfil Ligero)
+## Documentation structure (Light profile)
 
 ```
-[nombre-proyecto]/
+[project-name]/
 ├── CLAUDE.md
 ├── README.md
 ├── decisions.md
 └── docs/
-    ├── 00_glosario.md
-    ├── 01_brief_proyecto.md
-    ├── 02_historias_usuario.md      ←── incluye valoración INVEST inline
-    ├── 03_requisitos.md             ←── BRD/PRD + RTM + MoSCoW fusionados
-    ├── 06_modelo_datos.md           ←── solo si aplica (ver "Perfiles de proyecto")
-    ├── 07_mapa_flujos.md            ←── solo si aplica
-    ├── 08_especificacion_interfaz.md ←── solo si aplica
-    └── 09_plan_verificacion.md
+    ├── 00_glossary.md
+    ├── 01_project_brief.md
+    ├── 02_user_stories.md           ←── includes inline INVEST review
+    ├── 03_requirements.md           ←── BRD/PRD + RTM + MoSCoW merged
+    ├── 06_data_model.md             ←── only if applicable (see "Project profiles")
+    ├── 07_flow_map.md               ←── only if applicable
+    ├── 08_interface_spec.md         ←── only if applicable
+    └── 09_verification_plan.md
 ```

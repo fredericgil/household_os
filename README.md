@@ -1,3 +1,3 @@
 # household_os
 
-En desarrollo.
+In development.

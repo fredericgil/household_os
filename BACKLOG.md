@@ -1,16 +1,16 @@
 # Backlog — household_os
 
-Ideas y funcionalidades candidatas a incluir en el proyecto, capturadas a medida que surgen. No son decisiones cerradas ni compromisos de alcance — son material de entrada para el Project Brief, las User Stories o revisiones futuras. Ningún ítem de aquí entra en una fase formal (User Stories, BRD, RTM...) sin pasar antes por una decisión explícita del usuario.
+Ideas and candidate features to include in the project, captured as they come up. These are not closed decisions or scope commitments — they're input material for the Project Brief, User Stories, or future reviews. No item here enters a formal phase (User Stories, BRD, RTM...) without first going through an explicit user decision.
 
-Formato de entrada:
+Entry format:
 
 ```
-## [Título]
+## [Title]
 
-- **Origen:** cuándo y en qué contexto surgió.
-- **Descripción:** de qué se trata, en una o dos frases.
-- **Relacionado con:** decisiones, requisitos o documentos afectados si se retoma.
-- **Preguntas abiertas:** lo que habría que decidir antes de trabajar en esto.
+- **Origin:** when and in what context it came up.
+- **Description:** what it's about, in one or two sentences.
+- **Related to:** decisions, requirements, or documents affected if revisited.
+- **Open questions:** what would need to be decided before working on this.
 ```
 
 ---

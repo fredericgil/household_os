@@ -1,9 +1,9 @@
 MIT License
 
-> Esta licencia MIT cubre el código fuente del repositorio.
-> La documentación de análisis funcional (`docs/`, `decisions.md`,
-> `README.md`) tiene licencia propia — ver `docs/LICENSE`
-> (Creative Commons Atribución 4.0).
+> This MIT license covers the repository's source code.
+> The functional analysis documentation (`docs/`, `decisions.md`,
+> `README.md`) has its own license — see `docs/LICENSE`
+> (Creative Commons Attribution 4.0).
 
 Copyright (c) 2026 Frederic Gil Gamez
 
