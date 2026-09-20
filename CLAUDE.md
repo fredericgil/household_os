@@ -2,7 +2,7 @@
 
 > Copy this file as `CLAUDE.md` into the root of a new functional analysis project targeting an English-speaking/international audience.
 > Update the structure section with the real project name.
-> **Template version: 2.0** — see `CHANGELOG.md` in this repo (`sdd-template`) for the change history. This is a straight translation of the Spanish master (`CLAUDE.md`) in this same repo; the methodology is identical. If you improve this template on a concrete project, port the change back to both language variants and add the changelog entry.
+> **Template version: 2.1** — see `CHANGELOG.md` in this repo (`sdd-template`) for the change history. This is a straight translation of the Spanish master (`CLAUDE.md`) in this same repo; the methodology is identical. If you improve this template on a concrete project, port the change back to both language variants and add the changelog entry.
 
 ---
 
@@ -105,6 +105,10 @@ Before writing code, verify these three traces:
 3. Is every flow in the flow map traceable to at least one FR in the RTM?
 
 If any trace fails, fix the affected documents before continuing.
+
+### External citation verification
+
+Any document that cites an external source (academic paper, study, statistic, article) to back up a problem, assumption, or requirement must verify that citation against the primary source before it reaches baseline — a search-result summary is never enough, since it can invent or mix up authors. Verify at minimum: exact authors, publication, year, volume/pages or DOI. If verification reveals a discrepancy with what's already written, fix it before continuing, not after. This applies the same whether the verification is done directly or delegated to a separate agent.
 
 ### Gap during implementation
 
